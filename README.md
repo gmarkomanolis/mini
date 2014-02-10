@@ -46,6 +46,9 @@ Use MINI_TIME=1 if you would like Time-Independent traces with the durations of 
 
 Now you can execute your applications and the traces will be located in the folder ti_traces.
 
+
+The same information are here: https://github.com/gmarkomanolis/mini/wiki
+
 Changelog
 ---------
 
