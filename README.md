@@ -14,8 +14,15 @@ Compiling
 
 The compiling of the MinI tool is simple.
 
+You can use the bash script:
+* ./compile.sh
+
+or
+
 * gcc -Wall -fPIC -c mini.c
 * gcc -shared -Wl,-soname -o libmini.so mini.o
+
+
 * Copy the libmini.so file in the folder that you want this library to be located
 
 
