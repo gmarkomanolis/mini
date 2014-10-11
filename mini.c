@@ -567,23 +567,12 @@ MPI_Comm comm;
    sprintf(msg,"%d ",sendcnts[i]);
    strcat(longmsg,msg);
   }
-  for (i=0;i<global;i++) {
-
-   sprintf(msg,"%d ",sdispls[i]);
-   strcat(longmsg,msg);
-
-  }
 
   sprintf(msg, "%d ",r_buffer );
   strcat(longmsg,msg);
 
-
   for (i=0;i<global;i++) {
    sprintf(msg,"%d ",recvcnts[i]);
-   strcat(longmsg,msg);
-  }
-  for (i=0;i<global;i++) {
-   sprintf(msg,"%d ",rdispls[i]);
    strcat(longmsg,msg);
   }
 
