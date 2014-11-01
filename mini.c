@@ -342,6 +342,71 @@ MPI_Comm comm;
   return returnVal;
 }
 
+int   MPI_Allgather( sendbuf, sendcnts, sendtype, recvbuf, recvcnts, recvtype, comm )
+void * sendbuf;
+int sendcnts;
+MPI_Datatype sendtype;
+void * recvbuf;
+int recvcnts;
+MPI_Datatype recvtype;
+MPI_Comm comm;
+{
+  int   returnVal;
+  int llrank;
+  char msg[300];
+  int i;
+  int np,np2;
+  char nam[MPI_MAX_OBJECT_NAME];
+
+  if(en_time==1) end_time=PAPI_get_real_usec();
+  if(PAPI_accum_counters(values, 1)!=PAPI_OK) printf("This PAPI event is not supported\n");
+
+  MPI_Type_get_name(sendtype,nam,&np);
+  np=encode_datatype((const char*)&nam);
+  MPI_Type_get_name(recvtype,nam,&np2);
+  np2=encode_datatype((const char*)&nam);
+
+
+  PMPI_Comm_rank( MPI_COMM_WORLD, &llrank );
+  ins2=values[0];
+  if (bcount>buff )
+  {
+   fprintf(fp, longmsg);
+   longmsg[0]='\0';
+   bcount=0;
+  }
+
+  if(en_time==1) {
+         sprintf(msg,"%d compute %lld %.6f\n",llrank,values[0]-ins1,(double)(end_time-start_time)/1000000);
+  }
+  else sprintf(msg,"%d compute %lld\n",llrank,values[0]-ins1);
+
+  strcat(longmsg,msg);
+
+  sprintf(msg, "%d allGather %d %d",
+           llrank,sendcnts, recvcnts );
+
+  strcat(longmsg,msg);
+
+  if(np>0 || np2>0) {
+	  sprintf(msg,"%d %d\n",np,np2);
+  }
+  else sprintf(msg,"\n");
+  strcat(longmsg,msg);
+
+  bcount=bcount+2;
+
+  returnVal = PMPI_Allgather( sendbuf, sendcnts, sendtype, recvbuf,
+                               recvcnts, recvtype, comm );
+
+  if(en_time==1) start_time=PAPI_get_real_usec();
+
+  PAPI_accum_counters(values, 1);
+  ins1=values[0];
+
+  return returnVal;
+}
+
 
 int   MPI_Allgatherv( sendbuf, sendcnts, sendtype, recvbuf, recvcnts, displs, recvtype, comm )
 void * sendbuf;
