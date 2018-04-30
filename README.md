@@ -19,8 +19,8 @@ You can use the bash script:
 
 or
 
-* gcc -Wall -fPIC -c mini.c
-* gcc -shared -Wl,-soname -o libmini.so mini.o
+* gcc -shared -fPIC -c mini.c
+* gcc -fPIC -shared -o libmini.so mini.o
 
 
 * Copy the libmini.so file in the folder that you want this library to be located

@@ -1,4 +1,4 @@
 #!/bin/bash
 
-ftn -shared -fPIC -c mini.c
-ftn -fPIC -shared -o libmini.so mini.o
+cc -shared -fPIC -c mini.c
+cc -fPIC -shared -o libmini.so mini.o
