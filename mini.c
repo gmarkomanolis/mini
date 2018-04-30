@@ -70,7 +70,7 @@ int encode_datatype(const char *dat) {
 
 
 int   MPI_Allreduce( sendbuf, recvbuf, count, datatype, op, comm )
-void * sendbuf;
+const void * sendbuf;
 void * recvbuf;
 int count;
 MPI_Datatype datatype;
@@ -136,7 +136,7 @@ MPI_Comm comm;
 }
 
 int  MPI_Gather( sendbuf, sendcount, sendtype, recvbuf, recvcnt, recvtype, root, comm )
-void * sendbuf;
+const void * sendbuf;
 int sendcount;
 MPI_Datatype sendtype;
 void * recvbuf;
@@ -202,7 +202,7 @@ MPI_Comm comm;
 
 
 int  MPI_Alltoall( sendbuf, sendcount, sendtype, recvbuf, recvcnt, recvtype, comm )
-void * sendbuf;
+const void * sendbuf;
 int sendcount;
 MPI_Datatype sendtype;
 void * recvbuf;
@@ -261,12 +261,12 @@ MPI_Comm comm;
 }
 
 int   MPI_Gatherv( sendbuf, sendcnts, sendtype, recvbuf, recvcnts, displs, recvtype, root, comm )
-void * sendbuf;
+const void * sendbuf;
 int sendcnts;
 MPI_Datatype sendtype;
 void * recvbuf;
-int * recvcnts;
-int * displs;
+const int * recvcnts;
+const int * displs;
 MPI_Datatype recvtype;
 int root;
 MPI_Comm comm;
@@ -343,7 +343,7 @@ MPI_Comm comm;
 }
 
 int   MPI_Allgather( sendbuf, sendcnts, sendtype, recvbuf, recvcnts, recvtype, comm )
-void * sendbuf;
+const void * sendbuf;
 int sendcnts;
 MPI_Datatype sendtype;
 void * recvbuf;
@@ -409,12 +409,12 @@ MPI_Comm comm;
 
 
 int   MPI_Allgatherv( sendbuf, sendcnts, sendtype, recvbuf, recvcnts, displs, recvtype, comm )
-void * sendbuf;
+const void * sendbuf;
 int sendcnts;
 MPI_Datatype sendtype;
 void * recvbuf;
-int * recvcnts;
-int * displs;
+const int * recvcnts;
+const int * displs;
 MPI_Datatype recvtype;
 MPI_Comm comm;
 {
@@ -494,9 +494,9 @@ MPI_Comm comm;
 
 
 int   MPI_Reduce_scatter( sendbuf, recvbuf, recvcnts, datatype, op, comm )
-void * sendbuf;
+const void * sendbuf;
 void * recvbuf;
-int * recvcnts;
+const int * recvcnts;
 MPI_Datatype datatype;
 MPI_Op op;
 MPI_Comm comm;
@@ -568,13 +568,13 @@ MPI_Comm comm;
 }
 
 int   MPI_Alltoallv( sendbuf, sendcnts, sdispls, sendtype, recvbuf, recvcnts, rdispls, recvtype, comm )
-void * sendbuf;
-int * sendcnts;
-int * sdispls;
+const void * sendbuf;
+const int * sendcnts;
+const int * sdispls;
 MPI_Datatype sendtype;
 void * recvbuf;
-int * recvcnts;
-int * rdispls;
+const int * recvcnts;
+const int * rdispls;
 MPI_Datatype recvtype;
 MPI_Comm comm;
 {
@@ -742,7 +742,7 @@ MPI_Comm comm;
 }
 
 int   MPI_Reduce( sendbuf, recvbuf, count, datatype, op, root, comm )
-void * sendbuf;
+const void * sendbuf;
 void * recvbuf;
 int count;
 MPI_Datatype datatype;
@@ -1060,7 +1060,7 @@ MPI_Request * request;
 }
 
 int  MPI_Isend( buf, count, datatype, dest, tag, comm, request )
-void * buf;
+const void * buf;
 int count;
 MPI_Datatype datatype;
 int dest;
@@ -1168,7 +1168,7 @@ MPI_Status * status;
 }
 
 int  MPI_Send( buf, count, datatype, dest, tag, comm )
-void * buf;
+const void * buf;
 int count;
 MPI_Datatype datatype;
 int dest;

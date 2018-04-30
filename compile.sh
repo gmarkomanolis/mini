@@ -1,4 +1,4 @@
 #!/bin/bash
 
-gcc -Wall -fPIC -c mini.c
-gcc -shared -Wl,-soname -o libmini.so mini.o
+ftn -shared -fPIC -c mini.c
+ftn -fPIC -shared -o libmini.so mini.o
