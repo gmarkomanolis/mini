@@ -65,6 +65,9 @@ The same information are here: https://github.com/gmarkomanolis/mini/wiki
 Changelog
 ---------
 
+29/09/2020
+* Commands are lower case now
+* Adding tag for isend
 
 15/08/2013
 Version 1.0 released
