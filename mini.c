@@ -123,8 +123,8 @@ MPI_Comm comm;
   PAPI_accum_counters(values, 1);
 
   ins1=values[0];
-  if(np>0) sprintf(msg, "%d allReduce %d %lld %d\n",llrank,count,ins1-ins2,np);
-  else sprintf(msg, "%d allReduce %d %lld\n",llrank,count,ins1-ins2);
+  if(np>0) sprintf(msg, "%d allreduce %d %lld %d\n",llrank,count,ins1-ins2,np);
+  else sprintf(msg, "%d allreduce %d %lld\n",llrank,count,ins1-ins2);
   strcat(longmsg,msg);
 
  PAPI_accum_counters(values, 1);
@@ -241,7 +241,7 @@ MPI_Comm comm;
   }
 
   strcat(longmsg,msg);
-  sprintf(msg, "%d allToAll %d %d ",
+  sprintf(msg, "%d alltoall %d %d ",
               llrank,sendcount, recvcnt);
   strcat(longmsg,msg);
 
@@ -308,7 +308,7 @@ MPI_Comm comm;
     if (recvcnts[i]>max_recv) max_recv=recvcnts[i];
     if (displs[i]>max_recv_displ) max_recv_displ=displs[i];
   }
-  sprintf(msg, "%d GatherV %d ",
+  sprintf(msg, "%d gatherv %d ",
            llrank,s_buffer );
 
   strcat(longmsg,msg);
@@ -383,7 +383,7 @@ MPI_Comm comm;
 
   strcat(longmsg,msg);
 
-  sprintf(msg, "%d allGather %d %d",
+  sprintf(msg, "%d allgather %d %d",
            llrank,sendcnts, recvcnts );
 
   strcat(longmsg,msg);
@@ -456,7 +456,7 @@ MPI_Comm comm;
   }
   s_buffer=max_send+max_send_displ;
   r_buffer=max_recv+max_recv_displ;
-  sprintf(msg, "%d allGatherV %d ",
+  sprintf(msg, "%d allgatherv %d ",
            llrank,sendcnts );
 
   strcat(longmsg,msg);
@@ -530,7 +530,7 @@ MPI_Comm comm;
   else sprintf(msg,"%d compute %lld\n",llrank,values[0]-ins1);
 
   strcat(longmsg,msg);
-  sprintf(msg, "%d reduceScatter ",
+  sprintf(msg, "%d reducescatter ",
            llrank );
 
   strcat(longmsg,msg);
@@ -622,7 +622,7 @@ MPI_Comm comm;
   }
   s_buffer=max_send+max_send_displ;
   r_buffer=max_recv+max_recv_displ;
-  sprintf(msg, "%d allToAllV %d ",
+  sprintf(msg, "%d alltoallv %d ",
            llrank,s_buffer );
 
   strcat(longmsg,msg);
@@ -1096,8 +1096,8 @@ MPI_Request * request;
 
   strcat(longmsg,msg);
 
-  if(np>0) sprintf(msg, "%d Isend %d %d %d",llrank,dest,count,np);
-  else sprintf(msg, "%d Isend %d %d",llrank,dest,count);
+  if(np>0) sprintf(msg, "%d isend %d %d %d",llrank,dest,tag,count,np);
+  else sprintf(msg, "%d isend %d %d %d",llrank,dest,tag,count);
   strcat(longmsg,msg);
 
   returnVal = PMPI_Isend( buf, count, datatype, dest, tag, comm, request );
@@ -1260,8 +1260,8 @@ MPI_Status * status;
   }
   returnVal = PMPI_Wait( request, status );
   if(i_mode==1) {
-    if(glob_np>0) sprintf(msg,"%d Irecv %d %d %d\n",llrank,status->MPI_SOURCE,glob_size,glob_np);
-    else sprintf(msg,"%d Irecv %d %d\n",llrank,status->MPI_SOURCE,glob_size);
+    if(glob_np>0) sprintf(msg,"%d irecv %d %d %d\n",llrank,status->MPI_SOURCE,glob_size,glob_np);
+    else sprintf(msg,"%d irecv %d %d\n",llrank,status->MPI_SOURCE,glob_size);
     strcat(longmsg,msg);
     strcat(longmsg,temp_long);
   }
