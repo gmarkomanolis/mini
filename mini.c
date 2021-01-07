@@ -1096,7 +1096,7 @@ MPI_Request * request;
 
   strcat(longmsg,msg);
 
-  if(np>0) sprintf(msg, "%d isend %d %d %d",llrank,dest,tag,count,np);
+  if(np>0) sprintf(msg, "%d isend %d %d %d %d",llrank,dest,tag,count,np);
   else sprintf(msg, "%d isend %d %d %d",llrank,dest,tag,count);
   strcat(longmsg,msg);
 
